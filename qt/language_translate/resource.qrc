@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/language">
+        <file>Chinese.qm</file>
+        <file>Chinese.ts</file>
+        <file>English.qm</file>
+        <file>English.ts</file>
+    </qresource>
+</RCC>
