@@ -10,11 +10,11 @@ int flag=1;
 
 void handle_sig_child()//捕捉SIGCHLD信号后的处理fun
 {
-	int ret; 
-	pid_t pid_c;
-	pid_c=wait(&ret);//使进程睡眠，直到它的一个子进程退出时唤醒
-	flag = 0;   //使主进程中读取的循环推出
-	printf("Child proess PID = %d return %d.\n",pid_c,ret);
+ int ret; 
+ pid_t pid_c;
+ pid_c=wait(&ret);//使进程睡眠，直到它的一个子进程退出时唤醒
+ flag = 0;   //使主进程中读取的循环推出
+ printf("Child proess PID = %d return %d.\n",pid_c,ret);
 }
 
 int main()
@@ -37,7 +37,6 @@ int main()
 		dup(pipefd[1]);
 		
 		printf("test\n");
-		fflush(stdout);
 		execl("/root/aizhaoyu_test.sh", "aizhaoyu_test.sh", NULL);
 		
 		exit(0);
@@ -68,7 +67,6 @@ int main()
 				continue;
 			}
 		
-			sys_record=0;
 			if(FD_ISSET(pipefd[0], &read_fdst))
 			{
 				bzero(buf, sizeof buf);
