@@ -20,6 +20,7 @@ typedef unsigned long long int 	uint64_t;
 #define data_t int  //self define
 
 int bubble(void **buf, uint32_t elementNumber);
+int insertion(void **buf, uint32_t elementNumber);
 
 int showData(void *buf, uint32_t elementNumber);
 
