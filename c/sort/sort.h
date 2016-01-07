@@ -21,6 +21,8 @@ typedef unsigned long long int 	uint64_t;
 
 int bubble(void **buf, uint32_t elementNumber);
 int insertion(void **buf, uint32_t elementNumber);
+int selection(void **buf, uint32_t elementNumber);
+int merge_sort(void **buf, uint32_t elementNumber); //divide and conquer
 
 int showData(void *buf, uint32_t elementNumber);
 

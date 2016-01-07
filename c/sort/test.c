@@ -7,8 +7,8 @@
 
 int main()
 {
-	data_t  array[]={34,15,17,8,1,5,3,8,6,9,88};
-	int num=sizeof(array)/sizeof(int);
+	data_t  array[] ={34,15,17,8,1,5,3,8,6,9,88};
+	int num = sizeof(array)/sizeof(int);
 	
 	int * p = malloc(sizeof(array));
 	bzero(p, sizeof(array));
@@ -16,7 +16,10 @@ int main()
 	
 	showData(array, num);
 	
-	bubble((void **)&p, num);  //数组做输入输出参数会有问题，所以改为使用内存分配的指针，这可能和数组是分配在栈上的有关
+	//bubble((void **)&p, num);  //脢媒脳茅脳枚脢盲脠毛脢盲鲁枚虏脦脢媒禄谩脫脨脦脢脤芒拢卢脣霉脪脭赂脛脦陋脢鹿脫脙脛脷麓忙路脰脜盲碌脛脰赂脮毛拢卢脮芒驴脡脛脺潞脥脢媒脳茅脢脟路脰脜盲脭脷脮禄脡脧碌脛脫脨鹿脴
+	//insertion((void**)&p, num);
+	//selection((void**)&p, num);
+	merge_sort((void**)&p, num);
 	
 	showData(p, num);
 	
