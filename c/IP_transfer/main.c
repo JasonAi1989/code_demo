@@ -23,7 +23,20 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 
+void printf_bin(unsigned int val)
+{
+    int count=32;
 
+    printf("bin IP:");
+    while(count--)
+    {
+        if(val>>count & 0x1)
+            printf("1");
+        else
+            printf("0");
+    }
+    printf("\n");
+}
 int main()
 {
 	printf("please choose the transfer direction:\n1:char to int\n2:int to char\nplease input the number:");
@@ -55,6 +68,24 @@ int main()
 		strcpy(IPc, ipstr);
 	}
 
-	printf("IP: %s\n", IPc);
-	printf("IP: %u\n", IPi);
+    printf("Host byte order:\n");
+	printf("str IP: %s\n", IPc);
+	printf("int IP: %u\n", IPi);
+	printf("hex IP: %x\n", IPi);
+    printf_bin(IPi);
+
+    printf("Network byte order:\n");
+    unsigned int n_IPi = htonl(IPi); 
+    char n_IPc[20];
+    bzero(n_IPc, sizeof n_IPc);
+	struct in_addr addr;
+	addr.s_addr = n_IPi;
+		
+	char* ipstr = inet_ntoa(addr);
+	strcpy(n_IPc, ipstr);
+
+	printf("str IP: %s\n", n_IPc);
+	printf("int IP: %u\n", n_IPi);
+	printf("hex IP: %x\n", n_IPi);
+    printf_bin(n_IPi);
 }
