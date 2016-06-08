@@ -4,16 +4,20 @@ import urllib.request
 import os.path
 
 def get_image_data(addr):
-    response=urllib.request.urlopen(addr)
-    if response.getcode() != 200:
-        return None
+    try:
+        response=urllib.request.urlopen(addr, timeout=30)
+        if response.getcode() != 200:
+            return None
 
-    html=response.read()
+        html=response.read()
 
-    if len(html) == 0:
-        return None
+        if len(html) == 0:
+            return None
     
-    return html
+        return html
+    except socket.timeout as e:
+        print('time out')
+        return None
 
 def analysis_data(data):
     data_string=str(data)
