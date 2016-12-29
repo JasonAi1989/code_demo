@@ -1,1 +1,5 @@
-这里提供的是最简单的UDP网络代码，并且没有进行错误处理
+This is the sample code for UDP protocol without error process.
+
+Note:
+1. We can’t recvfrom the data twice from a UDP packet, even it doesn’t finish to recvfrom all data in the first time. After the recvfrom(no mater whether all data have been recvfrom ed), the UDP packet will be dropped. This is why we can’t read twice.
+2.One UDP packet —> Once recvfrom. This is the meaning of ‘User Datagram Protocol’

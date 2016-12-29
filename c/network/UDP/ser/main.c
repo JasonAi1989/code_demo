@@ -25,7 +25,7 @@ int main()
 	//初始化服务器地址，端口，协议
 	addr[0].sin_family = AF_INET;
 	addr[0].sin_port = htons(8123);
-	addr[0].sin_addr.s_addr = inet_addr("211.88.25.109");  //inet_addr("127.0.0.1");
+	addr[0].sin_addr.s_addr = inet_addr("127.0.0.1");
 	
 	////////////////////////////////////////////////////////////////
 	//绑定服务器地址
@@ -33,9 +33,13 @@ int main()
 	
 	////////////////////////////////////////////////////////////////
 	//接收数据
-	recvfrom(fd, (void*)buf, sizeof(buf), 0, (struct sockaddr*)&addr[1], &len);
-	printf("%s\n", buf);
+	bzero(buf, sizeof(buf));
+	int ret = recvfrom(fd, (void*)buf, 5, 0, (struct sockaddr*)&addr[1], &len);
+	printf("1 ret:%d, len:%d, buf:%s\n", ret, len, buf);
 	
+	bzero(buf, sizeof(buf));
+	ret = recvfrom(fd, (void*)buf, 7, 0, (struct sockaddr*)&addr[1], &len);
+	printf("2 ret:%d, len:%d, buf:%s\n", ret, len, buf);
 	////////////////////////////////////////////////////////////////
 	//发送数据
 	p = "I'm uncle";

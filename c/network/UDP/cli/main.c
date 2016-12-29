@@ -25,13 +25,13 @@ int main()
 	bzero(&addr, sizeof(addr));
 
 	addr.sin_family = AF_INET;
-	addr.sin_port = htons(777);
-	addr.sin_addr.s_addr = inet_addr("12.12.12.113");
+	addr.sin_port = htons(8123);
+	addr.sin_addr.s_addr = inet_addr("127.0.0.1");
 
 	////////////////////////////////////////////////////////////
 	//写入
 	bzero(buf, sizeof(buf));
-	strcpy(buf, "test");
+	strcpy(buf, "hello world");
 	sendto(fd, buf, strlen(buf)+1, 0, (struct sockaddr*)&addr, sizeof(addr));
 	printf("sendto:[%s]\n", buf);
 #if 0 
