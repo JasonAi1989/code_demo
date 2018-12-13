@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 
 class PmJobManager
@@ -22,7 +23,6 @@ private:
             {
                 std::cout<<"collect the garbage"<<std::endl;
                 delete PmJobManager::m_pInstance;
-                PmJobManager::m_pInstance = nullptr;
             }
         }
     };

@@ -1,15 +1,21 @@
-BIN:otn_pm_report
-
 CC=g++
+LD=g++
 CPPFLAGS=-Wall -std=c++11 -ggdb
 LDFLAGS=-pthread
-SRC=main.cc PmJobManager.cc
 
-$(BIN):%.o
-	$(CC) $(LDFLAGS) -o $@ $^
+SRCS := $(wildcard *.cc)
+INCS := $(wildcard *.h)
+OBJS := $(SRCS:%.cc=%.o)
+BIN := otn_pm_report
+BINS := $(SRCS:%.cc=%)
 
-%.o:%.cc
-	$(CC) $(LDFLAGS) -o $@ $^
+all:$(BIN)
+
+$(BIN):$(SRCS) $(INCS)
+	$(CC) $(CPPFLAGS) -o $@ $(SRCS)
+
+#%.o:%.cc
+#	$(CC) $(CPPFLAGS) -o $@ -c $<
 
 .PHONY:
 	clean
