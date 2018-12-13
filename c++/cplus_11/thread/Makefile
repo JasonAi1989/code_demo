@@ -1,18 +1,19 @@
-all:Thread
-
 CC=g++
+LD=g++
 CPPFLAGS=-Wall -std=c++11 -ggdb
 LDFLAGS=-pthread
 
-Thread:Thread.o
-	$(CC) $(LDFLAGS) -o $@ $^
+SRCS := $(wildcard *.cc)
+BINS := $(SRCS:%.cc=%)
 
-Thread.o:Thread.cc
-	$(CC) $(CPPFLAGS) -o $@ -c $^
+all:$(BINS)
 
+%.o: %.cc
+	@echo + CC $<
+	$(CC) $(CPPFLAGS) -o $@ -c $<
 
 .PHONY:
 	clean
 
 clean:
-	rm Thread.o Thread
+	rm $(BINS)
