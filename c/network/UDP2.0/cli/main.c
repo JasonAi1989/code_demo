@@ -9,7 +9,7 @@
 #include <unistd.h>
 #include <arpa/inet.h>
 
-int main()
+int main(int argc, char const* argv[])
 {
 	int fd;
 	struct sockaddr_in addr;
@@ -24,9 +24,18 @@ int main()
 	//初始化服务器地址，端口，协议
 	bzero(&addr, sizeof(addr));
 
-	addr.sin_family = AF_INET;
-	addr.sin_port = htons(8123);
-	addr.sin_addr.s_addr = inet_addr("127.0.0.1");
+    if(argc==3)
+    {
+        addr.sin_family      = AF_INET;
+        addr.sin_port        = htons(atoi(argv[2]));
+        addr.sin_addr.s_addr = inet_addr(argv[1]);
+    }
+    else
+    {
+        addr.sin_family      = AF_INET;
+        addr.sin_port        = htons(8123);
+        addr.sin_addr.s_addr = inet_addr("127.0.0.1");
+    }
 
 	////////////////////////////////////////////////////////////
 	//写入
@@ -34,7 +43,7 @@ int main()
 	strcpy(buf, "hello world");
 	sendto(fd, buf, strlen(buf)+1, 0, (struct sockaddr*)&addr, sizeof(addr));
 	printf("sendto:[%s]\n", buf);
-#if 0
+#if 1
 	//读取
 	bzero(buf, sizeof(buf));
 	len = sizeof(addr);

@@ -16,14 +16,14 @@ int main(int argc, char* argv[])
 	char buf[100];
 	unsigned short dst_port;
 	int ret;
-	
+
 	//cheak args
 	if(argc != 3)
 	{
 		printf("Absent args: [dst ip] [dst port]\n");
 		return 1;
 	}
-	
+
 	bzero(&addr, sizeof(addr));
 	ret=inet_aton(argv[1], &(addr.sin_addr));
 	if(ret == 0)
@@ -31,17 +31,17 @@ int main(int argc, char* argv[])
 		printf("Error IP: %s\n", argv[1]);
 		return 1;
 	}
-	
+
 	dst_port=atoi(argv[2]);
 	if(dst_port == 0)
 	{
 		printf("Error port: %s\n", argv[2]);
 		return 1;
 	}
-	
+
 	//创建套接字
 	fd = socket(AF_INET, SOCK_STREAM, 0);
-	
+
 	//初始化服务器地址，端口，协议
 	addr.sin_family = AF_INET;
 	addr.sin_port = htons(dst_port);
@@ -63,7 +63,7 @@ int main(int argc, char* argv[])
 		return 1;
     }
 
-#if 1	
+#if 1
     while(1)
     {
 		//写入
@@ -72,7 +72,7 @@ int main(int argc, char* argv[])
 		write(fd, buf, strlen(buf)+1);
 		printf("write:[%s]\n", buf);
 #endif
-#if 1    
+#if 1
 		//读取
 		bzero(buf, sizeof(buf));
 		read(fd, buf, sizeof(buf));
@@ -83,6 +83,6 @@ int main(int argc, char* argv[])
     }
 
 	close(fd);
-	
+
 	return 0;
 }
